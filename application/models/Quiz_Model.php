@@ -18,20 +18,22 @@ class Quiz_Model extends CI_Model {
     }
 
     public function getQuestions($category) {
-        $query = $this->db->query("SELECT * FROM question WHERE category_id="
-                . "(SELECT categoryid FROM category WHERE category_name='$category')");
-        foreach ($query->result_array() as $row) {
-            echo $row['questionname']."<br>";
-            echo $row['answer1']."<br>";
-            echo $row['answer2']."<br>";
-            echo $row['answer3']."<br>";
-            echo $row['answer4']."<br>";
-            echo $row['correctanswer']."<br>";
-        }
+        $query = $this->db->query("SELECT question_id,correctanswer FROM question WHERE category_id= "
+        ."(SELECT categoryid FROM category WHERE category_name='$category')" 
+        ."ORDER BY RAND() LIMIT 10");
+        $array =  array_values($query->result_array());
+        echo $array[0]["question_id"];
+        return $array;
+    }
+    
+    public function getQuestion($question_id){
+        $query = $this->db->query("SELECT questionname,answer1,answer2,answer3,answer4"
+                . " FROM question WHERE question_id='$question_id'");
+        return $query->result_array();
     }
 
     public function calculateScore() {
         
     }
-
+   
 }
