@@ -68,15 +68,15 @@ and open the template in the editor.
                  </form>
                 <form name ="userinput" action="getNextQuestions" method="post">
                     <?php }else if($question != NULL){ ?>
-                        <h1><?php $question[0]["questionname"] ?></h1>
+                        <h1><?php echo $question[0]["questionname"] ?></h1>
                         <input type="radio" name="group1" value="1">
-                            <?php $question[0]["answer1"] ?> </input>
+                            <?php echo $question[0]["answer1"] ?> </input> </br>
                         <input type="radio" name="group1" value="1">
-                            <?php $question[0]["answer2"] ?> </input>
+                            <?php echo $question[0]["answer2"] ?> </input> </br>
                         <input type="radio" name="group1" value="1">
-                            <?php $question[0]["answer3"] ?> </input>
+                            <?php echo $question[0]["answer3"] ?> </input> </br>
                         <input type="radio" name="group1" value="1">
-                            <?php $question[0]["answer4"] ?> </input>    
+                            <?php echo $question[0]["answer4"] ?> </input> <br/>    
                         <p><button type="submit" class="btn btn-default btn-lg" 
                                    id="next" name="next_btn" value="next_btn">
                                 Next</button></p>    
