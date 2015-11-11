@@ -14,31 +14,9 @@
 class Quiz_Controller extends CI_Controller{
     
     public function  index(){
-        $this->load->model('quiz_model');
-        
-        $go_btn  = $this->input->post("go_btn");
-        
-        $next_btn = $this->input->post("next_btn");
-        
         $data = array();
         $data["question"] = NULL;        
         $this->load->view('question_view',$data);
-//        $data["question"] = NULL;        
-//        if($go_btn == NULL){
-//            
-//           $question = $this->quiz_model->getQuestions($category);
-//           $this->load->view('question_view',$data); 
-//           
-//        }else if($go_btn != NULL){
-//           echo $go_btn; 
-//        }else if($next_btn != NULL){
-//            $data["question"] =  $question;
-//        }
-//        else{
-//            
-//            $data["question"] =  $question;
-//        }
-        
     }
     
     public function getQuestionFromCategory(){
@@ -68,9 +46,9 @@ class Quiz_Controller extends CI_Controller{
                 echo "done";
             }else{
                 $count = $count+1;
-                $this->session->userdata('question_count',$count+1);
+                $this->session->set_userdata('question_count',$count);
                 $questions = $this->session->userdata('questions');
-                $question = $this->Quiz_Model->getQuestion($questions[$count+1]["question_id"]);
+                $question = $this->Quiz_Model->getQuestion($questions[$count]["question_id"]);
                 $data["question"]=$question;
                 $this->load->view('question_view',$data);
             }
