@@ -22,8 +22,6 @@ and open the template in the editor.
     <!-- Custom styles for our template -->
     <link rel="stylesheet" href="../../assets/css/bootstrap-theme.css" media="screen">
     <link rel="stylesheet" href="../../assets/css/main.css">
-    <link rel="stylesheet" href="../../assets/css/bootstrap-combobox.css">
-
 </head>
 
 <body class="home" onload="getSessionTime()">
@@ -43,26 +41,27 @@ and open the template in the editor.
 
 <!-- Header -->
 <header id="head">
-
     <div class="container">
         <!-- Category View -->
         <?php if (!isset($question) && !isset($score)) { ?>
             <form name="userinput" action="getQuestionFromCategory" method="post">
+                <br><br><br>
                 <h1>Select a quiz category according to your area of interest</h1>
-                <!--                    <div class="dropdown btn-group">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
-                                                data-toggle="dropdown" name="category_name" aria-haspopup="true" aria-expanded="true">
-                                             Category
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                            <li><a href="getQuestionFromCategory" data-value='Sport'>Sport</a></li>
-                                            <li><a href="#" data-value='General Knowledge'>General Knowledge</a></li>
-                                            <li><a href="#" data-value='Entertainment'>Entertainment</a></li>
-                                        </ul>
-                                    </div>-->
+
+                <!--                <div class="dropdown btn-group">-->
+                <!--                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"-->
+                <!--                            data-toggle="dropdown" name="category_name" aria-haspopup="true" aria-expanded="true">-->
+                <!--                        Category-->
+                <!--                        <span class="caret"></span>-->
+                <!--                    </button>-->
+                <!--                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="category_name">-->
+                <!--                        <li value="Sport"><a>Sport</a></li>-->
+                <!--                        <li value="General Knowledge"><a>General Knowledge</a></li>-->
+                <!--                        <li value="Entertainment"><a>Entertainment</a></li>-->
+                <!--                    </ul>-->
+                <!--                </div>-->
                 <div class="btn-group">
-                    <select id="category_name" name="category_name">
+                    <select id="category_name" name="category_name" class="dropdown btn-group">
                         <option value="Sport">Sport</option>
                         <option value="General Knowledge">General Knowledge</option>
                         <option value="Entertainment">Entertainment</option>
@@ -80,13 +79,15 @@ and open the template in the editor.
             ?>
             <form name="userinput" action="getNextQuestions" method="post">
                 <!-- Question View -->
-                <h1><?php echo $question[0]["questionname"] ?></h1>
+                <h3><?php echo $question[0]["questionname"] ?></h3>
                 <?php
                 $answers = $question[0]["answers"];
                 for ($i = 0; $i < count($answers); $i++) {
                     ?>
-                    <input type="radio" name="answer" value="<?php echo ($i + 1) ?>"/>
-                    <?php echo $answers[$i]["answer"] ?></br>
+                    <h4>
+                        <input type="radio" name="answer" value="<?php echo($i + 1) ?>"/>
+                        <?php echo $answers[$i]["answer"] ?></br>
+                    </h4>
                     <?php
                 }
                 if (isset($error)) {
@@ -160,6 +161,5 @@ and open the template in the editor.
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="../../assets/js/headroom.min.js"></script>
 <script src="../../assets/js/headroom.min.js"></script>
-<script src="../../assets/js/bootstrap-combobox.js"></script>
 </body>
 </html> 

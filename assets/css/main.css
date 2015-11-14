@@ -2,9 +2,9 @@
 #head { 
     background:#181015 ; 
     background-size: cover; 
-    min-height:520px; 
+    min-height:inherit;
     text-align: center; 
-    padding-top:240px; 
+    padding-top:150px;
     color:white; 
     font-family:"Open sans", Helvetica, Arial; 
     font-weight:300; 

@@ -15,7 +15,6 @@ function getSessionTime() {
     if ((sPage == 'getQuestionFromCategory'
             || sPage == 'getNextQuestions')
             && timeTxt == null) {
-        console.log("storage time " + time);
         if (time) {
             document.getElementById('time_store').value = time;
         } else {
