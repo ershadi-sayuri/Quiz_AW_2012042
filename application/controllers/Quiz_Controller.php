@@ -11,20 +11,24 @@
  *
  * @author Ushan
  */
-class Quiz_Controller extends CI_Controller {
+class Quiz_Controller extends CI_Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->load->library('session');
     }
 
-    public function index() {
+    public function index()
+    {
         $data = array();
         $data["question"] = NULL;
         $this->load->view('question_view', $data);
     }
 
-    public function getQuestionFromCategory() {
+    public function getQuestionFromCategory()
+    {
         $category = $this->input->post("category_name");
         $this->load->model('quiz_model');
         $questions = $this->quiz_model->getQuestions($category);
@@ -33,7 +37,8 @@ class Quiz_Controller extends CI_Controller {
         $this->getNextQuestions(true);
     }
 
-    public function getNextQuestions($isFirstQuestion = FALSE) {
+    public function getNextQuestions($isFirstQuestion = FALSE)
+    {
         //inizializing models
         $this->load->model('quiz_model');
         $this->load->model('answer_model');
@@ -45,7 +50,7 @@ class Quiz_Controller extends CI_Controller {
         } else {
             $count = $this->session->userdata('question_count');
             $answer = $this->input->post("answer");
-            if($answer != NULL) {
+            if ($answer != NULL) {
                 if ($count == 0) {
                     //intializing answer array
                     $answers = array();
@@ -70,16 +75,17 @@ class Quiz_Controller extends CI_Controller {
                     $data["question"] = $this->buildQuestionData($count);
                     $this->load->view('question_view', $data);
                 }
-            }else{
+            } else {
                 //if user didnt input any answer
                 $data["question"] = $this->buildQuestionData($count);
-                $data["error"] =true;
+                $data["error"] = true;
                 $this->load->view('question_view', $data);
             }
         }
     }
 
-    private function buildQuestionData($index) {
+    private function buildQuestionData($index)
+    {
         $this->load->model('quiz_model');
         $this->load->model('answer_model');
         $questions = $this->session->userdata('questions');
@@ -89,7 +95,8 @@ class Quiz_Controller extends CI_Controller {
         return $question;
     }
 
-    private function clearSession() {
+    private function clearSession()
+    {
         $this->session->unset_userdata("questions");
         $this->session->unset_userdata("question_count");
         $this->session->unset_userdata("answers");
