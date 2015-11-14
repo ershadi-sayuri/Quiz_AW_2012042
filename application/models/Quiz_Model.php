@@ -27,13 +27,9 @@ class Quiz_Model extends CI_Model {
     }
     
     public function getQuestion($question_id){
-        $query = $this->db->query("SELECT questionname,answer1,answer2,answer3,answer4"
+        $query = $this->db->query("SELECT questionname "
                 . " FROM question WHERE question_id='$question_id'");
         return $query->result_array();
-    }
-
-    public function calculateScore() {
-        
     }
    
 }
